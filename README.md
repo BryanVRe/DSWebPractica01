@@ -1,3 +1,5 @@
-hello world 
-cambio bryan
-cambio en github
+equipo 2 
+yolotzin 
+liliam 
+jonathan 
+bryan 
