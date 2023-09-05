@@ -1,0 +1,130 @@
+/* Estilo para el contenedor del formulario */
+.form-container {
+    width: 100px; /* Cambia el ancho según tus necesidades */
+    margin: 0 auto;
+}
+
+/* Estilo para los labels */
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease; /* Transición suave para el movimiento */
+    font-weight: bold; /* Hacer el texto más grueso */
+    font-family: Verdana, sans-serif; /* Usar la fuente Verdana */
+}
+
+/* Estilo para los inputs */
+input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease; /* Transición suave para el borde */
+   
+}
+input {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 60px;
+    border: 1px solid #000000;
+    padding: 0 4px 0 4px;
+ }
+
+/* Estilo para el label cuando el input tiene el foco */
+input[type="text"]:focus + label {
+    transform: translateY(-25px); /* Mover el label hacia arriba */
+    font-size: 12px; /* Reducir el tamaño del texto */
+    color: #007bff; /* Cambiar el color del texto (opcional) */
+}
+
+/* Estilo para el input cuando tiene el foco */
+input[type="text"]:focus {
+    border-color: #007bff; /* Cambiar el color del borde al enfocar */
+}
+h1 {
+    font-size: 36px; /* Tamaño de fuente */
+    font-family: 'Arial', sans-serif; /* Tipo de fuente (puedes cambiarlo) */
+    color: #007bff; /* Color del texto */
+    text-align: center; /* Alineación del texto */
+    text-transform: uppercase; /* Convertir el texto a mayúsculas */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+    margin-bottom: 20px; /* Espacio en la parte inferior del título */
+}
+
+/* Estilo para el botón */
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block; /* Asegura que el botón sea un elemento bloque */
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.center-div {
+    width: 800px; /* Ajusta el ancho según tus necesidades */
+    margin: 0 auto; /* Centra el div horizontalmente */
+    
+}
+
+body {
+    background: linear-gradient(to bottom, #d6e0eb, #627a62); /* Cambia los colores según tus preferencias */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.side-image {
+    float: right; /* Alinea la imagen a la derecha del formulario */
+    margin-left: 20px; /* Agrega un margen a la izquierda para separar la imagen del formulario */
+    max-width: 300px; /* Ajusta el ancho máximo de la imagen según tus necesidades */
+    transform: translateY(-450px);
+}
+
+/*** ESTILOS BOTÓN SLIDE LEFT ***/
+.ov-btn-slide-left {
+    background: #fff; /* color de fondo */
+    color: #d83f3f; /* color de fuente */
+    border: 2px solid #000000; /* tamaño y color de borde */
+    padding: 16px 20px;
+    border-radius: 3px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .ov-btn-slide-left:hover {
+    color: #fff; /* color de fuente hover */
+  }
+  .ov-btn-slide-left::after {
+    content: "";
+    background: #438c42; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+  .ov-btn-slide-left:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
