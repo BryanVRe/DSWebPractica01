@@ -5,7 +5,7 @@
      <link rel="stylesheet" href="estilo-alumno.css">
     </head>
     	<body  background="black"> 
-        <h1>Alta Alumnos</h1>
+        <h1>Alta Alumnos Formulario</h1>
         <div class="center-div">
 			<form action="alta.php" method="POST">
             <label>Nombre del alumno</label><br>
