@@ -39,3 +39,34 @@ if (isset($_POST["insert"])) {
     }
 }
 
+// Código para obtener la lista de alumnos
+try {
+    // Consulta SQL para seleccionar datos de la tabla "alumnos"
+    $sentencia = $pdo->query("SELECT id, nombre, direccion, correo, telefono FROM alumnos");
+
+    // Obtener los datos en forma de objetos
+    $alumnos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+} catch (PDOException $e) {
+    echo "Error en la consulta a la base de datos: " . $e->getMessage();
+}
+
+// Código para eliminar un alumno
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+
+    try {
+
+        $sentencia = $pdo->prepare("DELETE FROM alumnos WHERE id = ?;");
+        $resultado = $sentencia->execute([$id]);
+
+        if ($resultado === true) {
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Algo salió mal";
+        }
+    } catch (PDOException $e) {
+        echo "Error en la conexión o consulta a la base de datos: " . $e->getMessage();
+    }
+}
+
