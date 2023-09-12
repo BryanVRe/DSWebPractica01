@@ -1,75 +1,41 @@
 <?php
-include_once "findAll.php"; // Incluye el archivo que obtiene los datos
-?>
+$host = "172.17.0.2";
+$port = "5432";
+$dbname = "alumnos";
+$user = "postgres"; 
+$password = "postgres"; 
 
-<!DOCTYPE html>
-<html>
+$edit_mode = false; // Variable para controlar el modo de edición
 
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
-</head>
+try {
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Error en la conexión a la base de datos: " . $e->getMessage());
+}
 
-<body>
-    <div class="container">
-        <div class="row justify-content-center p-5">
-            <div class="col-sm-6">
-                <h1>Alta Alumnos</h1>
-                <form action="alta.php" method="POST">
-                    <label>Nombre del alumno</label>
-                    <input type="text" name="nombre" class="form-control" placeholder="Ingrese el nombre del alumno"
-                        required>
-                    <label>Direccion</label>
-                    <input type="text" name="direccion" class="form-control" placeholder="Ingrese direccion del alumno"
-                        required>
-                    <label>Telefono</label>
-                    <input type="text" name="telefono" class="form-control" step="any"
-                        placeholder="Ingrese numero de telefono" required>
-                    <label>Correo electronico</label>
-                    <input type="text" name="correo" class="form-control" placeholder="Ingrese correo electronico"
-                        required><br>
-                    <input type="submit" class="btn btn-primary" name="insert" value="Guardar" />
-                </form>
-                <br>
-                <hr />
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Clave</th>
-                            <th>Nombre</th>
-                            <th>Dirreccion</th>
-                            <th>Correo</th>
-                            <th>Telefono</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        <?php foreach ($alumnos as $alumno): ?>
-                        <tr>
-                            <td>
-                                <a href="<?php echo "consultar.php?id=" . $alumno->id?>"><?php echo $alumno->id; ?></a>
-                            </td>
-                            <td>
-                                <?php echo $alumno->nombre; ?>
-                            </td>
-                            <td>
-                                <?php echo $alumno->direccion; ?>
-                            </td>
-                            <td>
-                                <?php echo $alumno->correo; ?>
-                            </td>
-                            <td>
-                                <?php echo $alumno->telefono; ?>
-                            </td>
-                            <td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $alumno->id?>">📝</a></td>
-							<td><a class="btn btn-danger" href="<?php echo "eliminar.php?id=" . $alumno->id?>">🗑️</a></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</body>
+// Verifica si se ha enviado el formulario de alta de alumnos
+if (isset($_POST["insert"])) {
+    // Obtener los valores del formulario
+    $nombre = $_POST["nombre"];
+    $direccion = $_POST["direccion"];
+    $telefono = $_POST["telefono"];
+    $correo = $_POST["correo"];
 
-</html>
+    try {
+        // Consulta SQL para insertar un nuevo registro en la tabla "alumnos"
+        $sentencia = $pdo->prepare("INSERT INTO alumnos (nombre, direccion, telefono, correo) VALUES (?, ?, ?, ?)");
+        $resultado = $sentencia->execute([$nombre, $direccion, $telefono, $correo]);
+
+        if ($resultado === true) {
+            // Redirigir a la página principal después de insertar
+            header("Location: index.php");
+            exit(); // Importante: terminar el script después de redirigir
+        } else {
+            echo "Error al insertar el alumno en la base de datos.";
+        }
+    } catch (PDOException $e) {
+        echo "Error en la consulta a la base de datos: " . $e->getMessage();
+    }
+}
+
