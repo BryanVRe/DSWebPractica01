@@ -151,4 +151,60 @@ if (isset($_POST["update"])) {
                     <input type="reset" class="btn btn-danger" value="Restablecer campos" />
                     <?php endif; ?>
                 </form>
+                <br>
+                <hr />
+                <!-- Lista de Alumnos -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Clave</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <?php foreach ($alumnos as $alumno): ?>
+                        <tr>
+                            <td>
+                                <a href="<?php echo " index.php?edit_id=" . $alumno->id ?>">
+                                    <?php echo $alumno->id; ?>
+                                </a>
+                            </td>
+                            <td>
+                                <?php echo $alumno->nombre; ?>
+                            </td>
+                            <td>
+                                <?php echo $alumno->direccion; ?>
+                            </td>
+                            <td>
+                                <?php echo $alumno->correo; ?>
+                            </td>
+                            <td>
+                                <?php echo $alumno->telefono; ?>
+                            </td>
+                            <td>
+                                <!-- Agregar el script de confirmación antes de redirigir a la página de eliminación -->
+                                <a class="btn btn-danger" href="<?php echo " javascript:confirmDelete(" . $alumno->id .
+                                    ")" ?>">🗑</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function confirmDelete(id) {
+        if (confirm("¿Estás seguro de que deseas eliminar este alumno?")) {
+            // Si el usuario confirma la eliminación, redirige a la página de eliminación
+            window.location.href = "index.php?id=" + id;
+        }
+    }
+</script>
 
+</html>
