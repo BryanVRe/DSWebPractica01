@@ -39,3 +39,13 @@ if (isset($_POST["insert"])) {
     }
 }
 
+// Código para obtener la lista de alumnos
+try {
+    // Consulta SQL para seleccionar datos de la tabla "alumnos"
+    $sentencia = $pdo->query("SELECT id, nombre, direccion, correo, telefono FROM alumnos");
+
+    // Obtener los datos en forma de objetos
+    $alumnos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+} catch (PDOException $e) {
+    echo "Error en la consulta a la base de datos: " . $e->getMessage();
+}
