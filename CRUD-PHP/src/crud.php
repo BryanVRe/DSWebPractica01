@@ -123,3 +123,109 @@ if (isset($_POST["update"])) {
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="">
+                <button type="submit" name="logout" class="btn btn-danger float-right mt-2">Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center p-5">
+            <div class="col-sm-6">
+                <h1>Alta Alumnos Formulario</h1>
+                <form action="crud.php" method="POST">
+                    <?php if ($edit_mode && isset($alumno_edit)): ?>
+                    <!-- En modo de edición, muestra el ID oculto para identificar al alumno -->
+                    <input type="hidden" name="id" value="<?php echo $alumno_edit->id; ?>">
+                    <?php endif; ?>
+                    <label>Nombre del alumno</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Ingrese el nombre del alumno"
+                        value="<?php if ($edit_mode && isset($alumno_edit)) echo $alumno_edit->nombre; ?>" required>
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" class="form-control" placeholder="Ingrese dirección del alumno"
+                        value="<?php if ($edit_mode && isset($alumno_edit)) echo $alumno_edit->direccion; ?>" required>
+                    <label>Teléfono</label>
+                    <input type="text" name="telefono" class="form-control" step="any"
+                        placeholder="Ingrese número de teléfono"
+                        value="<?php if ($edit_mode && isset($alumno_edit)) echo $alumno_edit->telefono; ?>" required>
+                    <label>Correo electrónico</label>
+                    <input type="text" name="correo" class="form-control" placeholder="Ingrese correo electrónico"
+                        value="<?php if ($edit_mode && isset($alumno_edit)) echo $alumno_edit->correo; ?>" required><br>
+                    <?php if ($edit_mode): ?>
+                    <!-- En modo de edición, cambia el nombre del botón a "Guardar cambios" -->
+                    <input type="submit" class="btn btn-primary" name="update" value="Guardar cambios" />
+                    <input type="button" class="btn btn-danger" value="Volver" onclick="window.history.back();" />
+                    <?php else: ?>
+                    <!-- En modo normal, muestra el botón de "Guardar" -->
+                    <input type="submit" class="btn btn-primary" name="insert" value="Guardar" />
+                    <input type="reset" class="btn btn-danger" value="Restablecer campos" />
+                    <?php endif; ?>
+                </form>
+                <br>
+                <hr />
+                <!-- Lista de Alumnos -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Clave</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <?php foreach ($alumnos as $alumno): ?>
+                        <tr>
+                            <td>
+                                <a href="<?php echo " crud.php?edit_id=" . $alumno->id ?>">
+                                    <?php echo $alumno->id; ?>
+                                </a>
+                            </td>
+                            <td>
+                                <?php echo $alumno->nombre; ?>
+                            </td>
+                            <td>
+                                <?php echo $alumno->direccion; ?>
+                            </td>
+                            <td>
+                                <?php echo $alumno->correo; ?>
+                            </td>
+                            <td>
+                                <?php echo $alumno->telefono; ?>
+                            </td>
+                            <td>
+                                <!-- Agregar el script de confirmación antes de redirigir a la página de eliminación -->
+                                <a class="btn btn-danger" href="<?php echo " javascript:confirmDelete(" . $alumno->id .
+                                    ")" ?>">🗑</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function confirmDelete(id) {
+        if (confirm("¿Estás seguro de que deseas eliminar este alumno?")) {
+            // Si el usuario confirma la eliminación, redirige a la página de eliminación
+            window.location.href = "crud.php?id=" + id;
+        }
+    }
+</script>
+
+</html>
