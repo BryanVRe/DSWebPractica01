@@ -43,3 +43,39 @@ if (isset($_SESSION["usuario"])) {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h1 class="display-4">INICIAR SESIÓN</h1>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="index.php">
+                            <div class="form-group">
+                                <label for="textcorreo">Correo</label>
+                                <input type="text" class="form-control" id="textcorreo" name="textcorreo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="texttelefono">Telefono</label>
+                                <input type="password" class="form-control" id="texttelefono" name="texttelefono" required>
+                            </div>
+                            <div class="text-center">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Ingresar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
