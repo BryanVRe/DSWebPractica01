@@ -1,0 +1,64 @@
+/* Estilo para la tabla */
+table {
+    border: 4px solid #655b53; /* Borde morado */
+    background-color: #b5b5b7; /* Fondo rosa suave */
+   
+}
+
+/* Estilo para los campos de entrada de texto y contraseña */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid white; /* Borde blanco */
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px; /* Espacio entre campos */
+    background-color: #f8f8f8; /* Fondo gris claro */
+    color: #333; /* Texto gris oscuro */
+}
+
+/* Estilo para las imágenes */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Elimina el espacio adicional debajo de las imágenes */
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+}
+
+/* Estilo para las etiquetas de texto */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Color de texto gris oscuro */
+    display: block; /* Colocar etiquetas en una nueva línea */
+}
+
+/* Estilo para el botón de enviar */
+input[type="submit"] {
+    background-color: #7881c1; /* Naranja */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s; /* Efecto de transición en el color de fondo */
+}
+
+/* Estilo adicional para el botón de enviar cuando se pasa el cursor sobre él */
+input[type="submit"]:hover {
+    background-color: #5497db; /* Naranja más oscuro al pasar el cursor */
+}
+
+/* Estilo general para el cuerpo de la página */
+body {
+    background: linear-gradient(to bottom, #fff, #5b5a4f); /* Fondo con degradado */
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    text-align: center; /* Centrar el contenido del cuerpo */
+    padding: 20px; /* Espacio alrededor del contenido */
+}
